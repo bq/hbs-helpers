@@ -1,0 +1,28 @@
+{
+  "name": "hbs-helpers",
+  "version": "0.0.1",
+  "authors": [
+    "Alexander De León <alexander.deleon@bq.com>",
+    "Álvaro Brito <alvaro.brito@bq.com>",
+    "Anthanh Pham <anthanh.pham@bq.com>"
+  ],
+  "description": "A set of helpers for Handlebars templates",
+  "main": "hbs-helpers.js",
+  "keywords": [
+    "handlebars",
+    "hbs",
+    "helpers",
+    "templates"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "~1.3.0"
+  }
+}
