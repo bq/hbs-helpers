@@ -29,9 +29,11 @@
 
     Handlebars.registerHelper('datas', function(context) {
         var output = '';
-        context.forEach(function(value) {
-            output += ' data-' + value.type + '="' + value.value + '"';
-        });
+        for(var attr in context) {
+            if (context.hasOwnProperty(attr)) {
+                output += ' data-' + context[attr].type + '="' + context[attr].value + '"';
+            }
+        }
         return output;
     });
 
