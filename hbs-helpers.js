@@ -11,31 +11,15 @@
 }(function (Handlebars) {
 
     /**
-     * Handlebars Helper: Data attributes generator
-     * Example:
-     *  dataAttributes": {        
-     *       "context": {
-     *           "type": "typeData",
-     *           "value": "valueData"
-     *       }
-     *   }
-     */
-    Handlebars.registerHelper('data', function(context) {
-        if (context) {
-            return ' data-' + context.type + '="' + context.value + '"';
-        }
-        return '';
-    });
-
-    Handlebars.registerHelper('datas', function(context) {
-        var output = '';
-        for(var attr in context) {
-            if (context.hasOwnProperty(attr)) {
-                output += ' data-' + context[attr].type + '="' + context[attr].value + '"';
+     * Data attributes generator
+     * Use:
+        dataAttributes": {        
+            "context": {
+                "type": "typeData",
+                "value": "valueData"
             }
         }
-        return output;
-    });
+     */
 
     Handlebars.registerHelper('data', function(context) {
         if (context) {
