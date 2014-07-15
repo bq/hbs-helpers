@@ -11,16 +11,15 @@
 }(function (Handlebars) {
 
     /**
-     * Data attributes generator
-     * Use:
-        dataAttributes": {        
-            "context": {
-                "type": "typeData",
-                "value": "valueData"
-            }
-        }
+     * Handlebars Helper: Data attributes generator
+     * Example:
+     *  dataAttributes": {        
+     *       "context": {
+     *           "type": "typeData",
+     *           "value": "valueData"
+     *       }
+     *   }
      */
-
     Handlebars.registerHelper('data', function(context) {
         if (context) {
             return ' data-' + context.type + '="' + context.value + '"';
@@ -30,26 +29,17 @@
 
     Handlebars.registerHelper('datas', function(context) {
         var output = '';
-        _.each(context, function(value) {
-            output += ' data-' + value.type + '="' + value.value + '"';
-        });
+        for(var attr in context) {
+            if (context.hasOwnProperty(attr)) {
+                output += ' data-' + context[attr].type + '="' + context[attr].value + '"';
+            }
+        }
         return output;
     });
 
     Handlebars.registerHelper('macro', function (name, defaults) {
-    // The following helper will be registered with the name
-    // given as the first parameter of the macro helper.
-    // Upon invocation, variables will be looked up in the
-    // following order: invocation arguments, default values
-    // given in the macro definition (stored in defaults.hash),
-    // and finally in the invocation context.
         Handlebars.registerHelper(name, function (options) {
-            // options.hash has the parameters passed to
-            // the defined helper in invocation, who
-            // override the default parameters and the current context.
             var e = $.extend(this, defaults.hash, options.hash);
-
-            // and here's where all the magic happens:
             return new Handlebars.SafeString(defaults.fn(e));
         });
     });
@@ -63,7 +53,6 @@
      * Log one or multiple values to the console:
      * {{log foo bar}}
      */
-    
     Handlebars.registerHelper('log', function() {
         console.log(['Values:'].concat(
             Array.prototype.slice.call(arguments, 0, -1)
@@ -74,7 +63,6 @@
      * Log one or multiple values to the console, with the current context:
      * {{debug foo bar}}
      */
-    
     Handlebars.registerHelper('debug', function() {
         console.log('Context:', this);
         console.log(['Values:'].concat(
@@ -86,7 +74,6 @@
      * A small collection of useful helpers for Handlebars.js.
      * https://github.com/danharper/Handlebars-Helpers
      */
-    
     var isArray = function(value) {
         return Object.prototype.toString.call(value) === '[object Array]';
     }
