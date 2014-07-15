@@ -2,11 +2,11 @@
 /* global define, require, module */
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['handlebars'], factory); // AMD
+        define(['handlebars', 'jquery'], factory); // AMD
     } else if (typeof exports === 'object') {
-        module.exports = factory(require('../handlebars')); // Node
+        module.exports = factory(require('../handlebars'), require('../jquery')); // Node
     } else {
-        factory(window.Handlebars); // Browser global
+        factory(window.Handlebars, window.$); // Browser global
     }
 }(function (Handlebars) {
 
