@@ -70,6 +70,13 @@
         ));
     });
 
+    /**
+     * Transform a timestamp number in string of date
+     */
+    Handlebars.registerHelper('prettifyDate', function(timestamp) {
+        return moment(timestamp).format('DD/MM/YYYY HH:mm');
+    });
+
     /**     
      * A small collection of useful helpers for Handlebars.js.
      * https://github.com/danharper/Handlebars-Helpers
