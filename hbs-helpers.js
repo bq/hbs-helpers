@@ -74,7 +74,7 @@
      * Transform a timestamp number in string of date
      */
     Handlebars.registerHelper('prettifyDate', function(timestamp) {
-        return moment(timestamp).format('DD/MM/YYYY HH:mm');
+        return timestamp ? moment(timestamp).format(format) : $.t('unsaved');
     });
 
     /**     
