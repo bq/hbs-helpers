@@ -73,8 +73,8 @@
     /**
      * Transform a timestamp number in string of date
      */
-    Handlebars.registerHelper('prettifyDate', function(timestamp) {
-        return timestamp ? moment(timestamp).format(format) : $.t('unsaved');
+    Handlebars.registerHelper('prettifyDate', function(timestamp, format, errorMsg) {
+        return timestamp ? moment(timestamp).format(format) : $.t(errorMsg);
     });
 
     /**     
