@@ -71,10 +71,10 @@
     });
 
     /**
-     * Transform, in some format, a timestamp number in string of date
+     * Transform a timestamp number in string of date
      */
-    Handlebars.registerHelper('prettifyDate', function(timestamp, format) {
-        return moment(timestamp).format(format);
+    Handlebars.registerHelper('prettifyDate', function(timestamp, format, errorMsg) {
+        return timestamp ? moment(timestamp).format(format) : $.t(errorMsg);
     });
 
     /**     
