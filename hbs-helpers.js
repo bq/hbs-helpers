@@ -1,6 +1,6 @@
 'use strict';
 /* global define, require, module */
-(function (factory) {
+(function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['handlebars', 'jquery'], factory); // AMD
     } else if (typeof exports === 'object') {
@@ -8,12 +8,12 @@
     } else {
         factory(window.Handlebars, window.$); // Browser global
     }
-}(function (Handlebars) {
+}(function(Handlebars) {
 
     /**
      * Handlebars Helper: Data attributes generator
      * Example:
-     *  dataAttributes": {        
+     *  dataAttributes": {
      *       "context": {
      *           "type": "typeData",
      *           "value": "valueData"
@@ -29,7 +29,7 @@
 
     Handlebars.registerHelper('datas', function(context) {
         var output = '';
-        for(var attr in context) {
+        for (var attr in context) {
             if (context.hasOwnProperty(attr)) {
                 output += ' data-' + context[attr].type + '="' + context[attr].value + '"';
             }
@@ -37,8 +37,18 @@
         return output;
     });
 
-    Handlebars.registerHelper('macro', function (name, defaults) {
-        Handlebars.registerHelper(name, function (options) {
+    Handlebars.registerHelper('attributes', function(context) {
+        var output = '';
+        for (var attr in context) {
+            if (context.hasOwnProperty(attr)) {
+                output += attr + '="' + context[attr] + '"';
+            }
+        }
+        return output;
+    });
+
+    Handlebars.registerHelper('macro', function(name, defaults) {
+        Handlebars.registerHelper(name, function(options) {
             var e = $.extend(this, defaults.hash, options.hash);
             return new Handlebars.SafeString(defaults.fn(e));
         });
@@ -77,7 +87,7 @@
         return timestamp ? moment(timestamp).format(format) : $.t(errorMsg);
     });
 
-    /**     
+    /**
      * A small collection of useful helpers for Handlebars.js.
      * https://github.com/danharper/Handlebars-Helpers
      */
@@ -89,20 +99,20 @@
         this.expressions = [];
     };
 
-    ExpressionRegistry.prototype.add = function (operator, method) {
+    ExpressionRegistry.prototype.add = function(operator, method) {
         this.expressions[operator] = method;
     };
 
-    ExpressionRegistry.prototype.call = function (operator, left, right) {
-        if ( ! this.expressions.hasOwnProperty(operator)) {
-            throw new Error('Unknown operator "'+operator+'"');
+    ExpressionRegistry.prototype.call = function(operator, left, right) {
+        if (!this.expressions.hasOwnProperty(operator)) {
+            throw new Error('Unknown operator "' + operator + '"');
         }
 
         return this.expressions[operator](left, right);
     };
 
     var eR = new ExpressionRegistry;
-    
+
     eR.add('not', function(left, right) {
         return left != right;
     });
@@ -125,19 +135,18 @@
         return left !== right;
     });
     eR.add('in', function(left, right) {
-        if ( ! isArray(right)) {
+        if (!isArray(right)) {
             right = right.split(',');
         }
         return right.indexOf(left) !== -1;
     });
 
     var isHelper = function() {
-        var args = arguments
-        ,   left = args[0]
-        ,   operator = args[1]
-        ,   right = args[2]
-        ,   options = args[3]
-        ;
+        var args = arguments,
+            left = args[0],
+            operator = args[1],
+            right = args[2],
+            options = args[3];
 
         if (args.length == 2) {
             options = args[1];
