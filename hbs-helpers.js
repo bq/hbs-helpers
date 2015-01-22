@@ -10,6 +10,21 @@
     }
 }(function(Handlebars) {
 
+
+    /**
+     * Add between two numbers
+     * @param  {Number} a
+     * @param  {Number} b
+     * @return {Number}   a + b
+     */
+    Handlebars.registerHelper('add', function(a, b) {
+
+        b = typeof b === typeof 1 ? parseInt(b, 10) : 1;
+
+        var result = typeof a === typeof 1 ? String(parseInt(a, 10) + b) : '';
+
+        return result;
+    });
     /**
      * Handlebars Helper: Data attributes generator
      * Example:
